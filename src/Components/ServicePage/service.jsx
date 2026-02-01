@@ -1,17 +1,16 @@
 import React from 'react'
 import NavBar from '../NavBar'
 import MultipleHome from '../StyledComponents/MultipleHome'
-import AboutChoose from './aboutChoose'
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import HomeFaq from '../homeFaq';
 import Footer from '../footer';
+import HomeService from '../homeService';
+import ProvideService from './ProvideService';
+import RequestPage from './requestPage';
 
-
-
-export default function About() {
-    const theme = createTheme({
+export default function Service() {
+   const theme = createTheme({
   typography: {
     fontFamily: 'Yantramanav, sans-serif',
   },
@@ -23,10 +22,10 @@ export default function About() {
       <NavBar />
       <MultipleHome
       head='WHO WE ARE'
-      page='About Us'
+      page='Our Services'
       />
-      <AboutChoose/>
-      <HomeFaq />
+      <ProvideService/>
+      <RequestPage/>
       <Footer/>
     </>
     </ThemeProvider>

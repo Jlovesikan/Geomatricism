@@ -78,14 +78,14 @@ export default function HomeImageCard() {
           flexDirection: 'column', 
           justifyContent: 'center',
           minWidth:{md:'50vw',sm:'100vw'}, 
-          height:{md:'60vh',sm:'40vh'},
+          height:{md:'60vh',sm:'60vh',xs:'60vh'},
         }}>
           <Typography variant="overline" sx={{ borderBottom: '2px solid white', Width: 'fit-content', mb: 2 }}>
             {slides[activeStep].tag}
           </Typography>
           <Typography variant="h4" fontWeight="bold" gutterBottom sx={{
               maxWidth: '100%',
-              fontSize:30,
+              fontSize:{sm:20},
               whiteSpace: 'normal',
               overflowWrap: 'anywhere',
               }}

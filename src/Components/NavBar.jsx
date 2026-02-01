@@ -14,21 +14,32 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact', 'Services', 'All Project'];
+
+const navItems = [
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
+  { label: 'Services', path: '/services' },
+  { label: 'All Project', path: '/projects' },
+];
 
 export default function NavBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(prev => !prev);
-};
+  };
 
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-        <AccountBalanceIcon sx={{ fontSize: '20px',color:'#1a1c5e',}}/>
+      <Typography
+        variant="h6"
+        sx={{ my: 2, display: 'flex', alignItems: 'center', gap: 1 }}
+      >
+        <AccountBalanceIcon sx={{ fontSize: '20px', color: '#1a1c5e' }} />
         GeoMatricism
       </Typography>
 
@@ -36,9 +47,14 @@ export default function NavBar() {
 
       <List>
         {navItems.map(item => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} onClick={handleDrawerToggle}>
-              <ListItemText primary={item} />
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton
+              component={Link}
+              to={item.path}
+              onClick={handleDrawerToggle}
+              sx={{ textAlign: 'center' }}
+            >
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -56,15 +72,13 @@ export default function NavBar() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, 
-                display: { sm: 'none' } 
-            }}>
-
-          <MenuIcon />
-
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
           </IconButton>
-          
-        <Box sx={{
+
+          <Box
+            sx={{
               flexGrow: 1,
               display: 'flex',
               my: 2,
@@ -73,22 +87,21 @@ export default function NavBar() {
               ml: { xs: 0, sm: 5 },
               fontSize: '25px',
               color: '#09316f',
-            }}>
-             <AccountBalanceIcon sx={{ fontSize: '30px',color:'#09316f',}} />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              fontWeight: '600',
             }}
           >
-            GeoMatricism
-          </Typography>
-        </Box>
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <AccountBalanceIcon sx={{ fontSize: '30px', color: '#09316f' }} />
+            <Typography variant="h6" sx={{ fontWeight: '600' }}>
+              GeoMatricism
+            </Typography>
+          </Box>
+
+          {/* Desktop menu */}
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map(item => (
               <Button
-                key={item}
+                key={item.label}
+                component={Link}
+                to={item.path}
                 sx={{
                   color: '#09316f',
                   fontWeight: '600',
@@ -98,13 +111,15 @@ export default function NavBar() {
                   },
                 }}
               >
-                {item}
+                {item.label}
               </Button>
             ))}
-        </Box>
-      </Toolbar>
-    </AppBar>
-    <Toolbar /> {/* pushes content below AppBar */}
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <Toolbar /> {/* push content below AppBar */}
+
       <nav>
         <Drawer
           variant="temporary"
@@ -113,7 +128,10 @@ export default function NavBar() {
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}

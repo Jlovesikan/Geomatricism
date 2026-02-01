@@ -145,7 +145,7 @@ export default function Home() {
           src={man}
           alt="Welcome"
           sx={{
-           display: { xs: 'none', md: 'block',sm:'none' },
+           display: { xs: 'none', md: 'block' },
            height:'99vh',
            width:'90%',
           
