@@ -95,9 +95,9 @@ export default function HomeImageCard() {
           <Typography variant="body1" sx={{ mb: 2, }}>
             {slides[activeStep].desc}
           </Typography>
-          <Button variant="contained" sx={{ bgcolor: 'black', color: 'white', width: 'fit-content' }}>
+          {/* <Button variant="contained" sx={{ bgcolor: 'black', color: 'white', width: 'fit-content' }}>
             READ MORE +
-          </Button>
+          </Button> */}
         </Box>
      
          <MobileStepper

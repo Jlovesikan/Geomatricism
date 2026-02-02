@@ -29,7 +29,7 @@ export default function HomeProvideCrad(props) {
         sx={{
           width: 80,
           height: 90,
-          bgcolor: 'transparent',
+          bgcolor: '#f0eded',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

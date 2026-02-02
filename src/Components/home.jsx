@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Welcome from '../images/Welcome.jpeg'
 import man from '../images/Welcome-man.png'
 import useScrollFade from '../Components/StyledComponents/Scroll.jsx';
+import { Link } from 'react-router-dom';
 
 
 export default function Home() {
@@ -119,12 +120,15 @@ export default function Home() {
         </Fade>
           <Fade in={true} timeout={600}  easing="cubic-bezier(0.2, 0, 1, 1)">
             <Button
+              component={Link}   
+              to="/services"        
+              variant="contained"
               sx={{
               background: '#e35e25',
               color: '#fff',
               borderRadius: 0,
               mt: 3,
-              width: { xs: '100%', md: '25vh' },
+              width: { xs: '80%', md: '25vh' },
               height: { xs: '48px', md: '7vh' },
               textTransform: 'none',
               '&:hover': {

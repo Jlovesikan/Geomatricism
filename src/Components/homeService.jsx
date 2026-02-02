@@ -6,6 +6,7 @@ import ServiceCrad3 from '../images/ServiceCrad-3.jpg'
 import ServiceCrad4 from '../images/ServiceCrad-4.jpg'
 import React from 'react';
 import ServiceCard from './ServiceCard';
+import { Link } from 'react-router-dom';
 
 export default function HomeService() {
  const { ref, visible } = useScrollFade();
@@ -124,6 +125,9 @@ export default function HomeService() {
       mb: { xs: 4, sm: 0 },
     }}>
           <Button
+                component={Link}   
+                to="/services"        
+                variant="contained"
                 sx={{
                 background: '#e35e25',
                 color: '#fff',
@@ -141,6 +145,9 @@ export default function HomeService() {
             </Button>
 
           <Button
+                component={Link}   
+                to="/contact"        
+                variant="contained"
                 sx={{
                 border:'1px solid #8f8c8c',  
                 background: '#fff',

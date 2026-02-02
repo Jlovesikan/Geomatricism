@@ -2,6 +2,7 @@ import React from 'react'
 import Awesome from '../images/Awesome.jpg'
 import { Box, Typography,Button} from '@mui/material'
 import useScrollFade from './StyledComponents/Scroll'
+import { Link } from 'react-router-dom';
 
 export default function HomeAwesome() {
    const {ref,visible}=useScrollFade();
@@ -68,6 +69,9 @@ export default function HomeAwesome() {
         </Typography>
 
          <Button
+                      component={Link}   
+                                      to="/services"        
+                                      variant="contained"
                       sx={{
                       background: '#f35917',
                       color: '#fff',

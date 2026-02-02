@@ -14,20 +14,20 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 const navItems = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
   { label: 'Services', path: '/services' },
-  { label: 'All Project', path: '/projects' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 export default function NavBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const location = useLocation(); // <-- current path
 
   const handleDrawerToggle = () => {
     setMobileOpen(prev => !prev);
@@ -42,9 +42,7 @@ export default function NavBar() {
         <AccountBalanceIcon sx={{ fontSize: '20px', color: '#1a1c5e' }} />
         GeoMatricism
       </Typography>
-
       <Divider />
-
       <List>
         {navItems.map(item => (
           <ListItem key={item.label} disablePadding>
@@ -52,7 +50,11 @@ export default function NavBar() {
               component={Link}
               to={item.path}
               onClick={handleDrawerToggle}
-              sx={{ textAlign: 'center' }}
+              sx={{
+                textAlign: 'center',
+                color: location.pathname === item.path ? '#e35e25' : '#000',
+                fontWeight: location.pathname === item.path ? '700' : '400',
+              }}
             >
               <ListItemText primary={item.label} />
             </ListItemButton>
@@ -67,6 +69,7 @@ export default function NavBar() {
       <CssBaseline />
       <AppBar component="nav" sx={{ background: 'white', boxShadow: 'none' }}>
         <Toolbar sx={{ py: 2, px: { xs: 2, sm: 6, md: 12 } }}>
+          {/* Mobile menu button */}
           <IconButton
             color="#1a1c5e"
             aria-label="open drawer"
@@ -77,6 +80,7 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
 
+          {/* Logo */}
           <Box
             sx={{
               flexGrow: 1,
@@ -104,11 +108,21 @@ export default function NavBar() {
                 to={item.path}
                 sx={{
                   color: '#09316f',
-                  fontWeight: '600',
+                  fontWeight: location.pathname === item.path ? '700' : '600',
                   mx: 2,
-                  '&:hover': {
-                    color: '#e35e25',
+                  position: 'relative',
+                  '&:hover': { color: '#e35e25' },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    width: location.pathname === item.path ? '100%' : '0%',
+                    height: '2px',
+                    bottom: 0,
+                    left: 0,
+                    backgroundColor: '#e35e25',
+                   
                   },
+                 
                 }}
               >
                 {item.label}
@@ -118,8 +132,10 @@ export default function NavBar() {
         </Toolbar>
       </AppBar>
 
-      <Toolbar /> {/* push content below AppBar */}
+      {/* Push content below AppBar */}
+      <Toolbar />
 
+      {/* Mobile drawer */}
       <nav>
         <Drawer
           variant="temporary"
